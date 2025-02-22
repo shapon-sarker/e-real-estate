@@ -4,6 +4,7 @@ note.txt has sql informatin
 
 Real Estate Managment System Feture:
 Menu:
+
 *Dashboard
 Main Display:
 	Project
@@ -14,6 +15,8 @@ Main Display:
 	How many car parks in total, and how many have been sold and how many are left by Project wise
 	Etc. by (Project management system)
 	Quick Access
+
+ 
 *Project:
 	1. All project list
 	2. Project Wise Flat List
