@@ -1,6 +1,11 @@
 Real Estate Managment System
-note.txt has sql informatin
+
+Real Estate Managment System(PHP+MySql)
+
 ![image](https://github.com/user-attachments/assets/7f37f2b5-3a09-44dc-9b27-cd8c8ac70d5c)
+
+
+[note.txt has sql informatin]
 
 Real Estate Managment System Feture:
 Menu:
