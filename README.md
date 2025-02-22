@@ -1,77 +1,41 @@
-sql
-CREATE DATABASE e_real_estate;
-------------------------------------
+Real Estate Managment System
+note.txt has sql informatin
+![image](https://github.com/user-attachments/assets/7f37f2b5-3a09-44dc-9b27-cd8c8ac70d5c)
 
-USE e_real_estate;
+Real Estate Managment System Feture:
+Menu:
+*Dashboard
+Main Display:
+	Project
+	Total Sell by Project wise
+	Tolal Collection by Project wise
+	Total Due by Project wise
+	How many were sold and how many were not by Project wise
+	How many car parks in total, and how many have been sold and how many are left by Project wise
+	Etc. by (Project management system)
+	Quick Access
+*Project:
+	1. All project list
+	2. Project Wise Flat List
+	3. Project Create & Project wise Flat list create
+		*Flat list: Flat Size(sft)
+	4. How many were flat sold and how many were not project wise
+	
+*Sell:
+	All sell list
+	sell Create by project wise
+	edit/delete option
 
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('user', 'admin') DEFAULT 'user',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+	
+*Customer:
+	1. project wise customer view/ add/remove/edit 
 
-CREATE TABLE projects (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_name VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    total_flats INT NOT NULL,
-    sold_flats INT DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+*Client Payments:
+	1. Views payments by project wise 
+	2. Add/delete payments invoice
+	3. Add Payments (form): Details,MR No,Payments Method Cash/Cheque,payments Amounts,Automatic Calculatin on Due Amount On total Payments. Print invoice by payments
 
-CREATE TABLE flats (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT NOT NULL,
-    flat_no VARCHAR(50) NOT NULL,
-    flat_size_sft DECIMAL(10, 2) NOT NULL,
-    flat_rate_per_sft DECIMAL(10, 2) NOT NULL,
-    total_price DECIMAL(15, 2) NOT NULL,
-    car_parking ENUM('yes', 'no') DEFAULT 'no',
-    car_parking_price DECIMAL(15, 2) DEFAULT 0,
-    utility_price DECIMAL(15, 2) DEFAULT 0,
-    grand_total DECIMAL(15, 2) NOT NULL,
-    status ENUM('sold', 'unsold') DEFAULT 'unsold',
-    FOREIGN KEY (project_id) REFERENCES projects(id)
-);
+Report
+ Total Payment Report,Project wise report,Total sell/due report,Total Client/customer paid amount/due amount) report.etc
 
-CREATE TABLE customers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT NOT NULL,
-    flat_id INT NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
-    father_name VARCHAR(255),
-    date_of_birth DATE,
-    occupation VARCHAR(100),
-    present_address TEXT,
-    permanent_address TEXT,
-    phone_number VARCHAR(20),
-    nationality VARCHAR(50),
-    nid_passport VARCHAR(50),
-    tin_number VARCHAR(50),
-    car_parking ENUM('yes', 'no') DEFAULT 'no',
-    loan_option ENUM('yes', 'no') DEFAULT 'no',
-    payment_mode ENUM('one_time', 'installments') DEFAULT 'one_time',
-    signature VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (project_id) REFERENCES projects(id),
-    FOREIGN KEY (flat_id) REFERENCES flats(id)
-);
 
-CREATE TABLE payments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT NOT NULL,
-    project_id INT NOT NULL,
-    flat_id INT NOT NULL,
-    mr_no VARCHAR(50) NOT NULL,
-    payment_method ENUM('cash', 'cheque') DEFAULT 'cash',
-    payment_amount DECIMAL(15, 2) NOT NULL,
-    due_amount DECIMAL(15, 2) NOT NULL,
-    payment_date DATE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (customer_id) REFERENCES customers(id),
-    FOREIGN KEY (project_id) REFERENCES projects(id),
-    FOREIGN KEY (flat_id) REFERENCES flats(id)
-);
